@@ -1,2 +1,2 @@
 # task_list
-javaを用いて簡単なTodoリストを作ってみる
+Java(Spring Boot)を用いて簡単なTodoリストを作ってみる
