@@ -1,10 +1,10 @@
 package jp.gihyo.profava.tasklist;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +20,9 @@ public class HomeRestController {
   private List<TaskItem> taskItems = new ArrayList<>();
 
   @RequestMapping("/home")
-  String hello() {
-    return """
-      <html>
-        <head>
-          <title>Hello</title>
-        </head>
-        <body>
-          <h1>Hello, Spring Boot!</h1>
-          It works! <br>
-          現在時刻は%sです。
-        </body>
-      </html>
-        """.formatted(LocalDateTime.now());
+  String hello(Model model) {
+    model.addAttribute("time", LocalDateTime.now());
+    return "hello";
   }
 
   @GetMapping("/add")
