@@ -1,5 +1,6 @@
 package jp.gihyo.profava.tasklist;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 public class HomeRestController {
 
   record TaskItem(String id, String task, String deadline, boolean done) {
@@ -21,9 +22,16 @@ public class HomeRestController {
   @RequestMapping("/home")
   String hello() {
     return """
-        Hello.
-        It works!
-        現在時刻は%sです。
+      <html>
+        <head>
+          <title>Hello</title>
+        </head>
+        <body>
+          <h1>Hello, Spring Boot!</h1>
+          It works! <br>
+          現在時刻は%sです。
+        </body>
+      </html>
         """.formatted(LocalDateTime.now());
   }
 
