@@ -30,7 +30,7 @@ public class HomeController {
     String id = UUID.randomUUID().toString().substring(0, 8);
     TaskItem item = new TaskItem(id, task, deadline, false);
     taskItems.add(item);
-    return "タスクを追加しました。";
+    return "redirect:/list";
   }
 
   @GetMapping("/list")
