@@ -35,10 +35,8 @@ public class HomeRestController {
   }
 
   @GetMapping("/list")
-    String listItems() {
-      String result = taskItems.stream()
-          .map(TaskItem::toString)
-          .collect(Collectors.joining(","));
-          return result;
+    String listItems(Model model) {
+      model.addAttribute("taskList", taskItems);
+      return "home";
   }
 }
