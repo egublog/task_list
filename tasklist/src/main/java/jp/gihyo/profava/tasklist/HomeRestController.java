@@ -8,12 +8,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 public class HomeRestController {
 
-  record TaskItem(String id, String task, String deadline, boolean done) {}
+  record TaskItem(String id, String task, String deadline, boolean done) {
+  }
+
   private List<TaskItem> taskItems = new ArrayList<>();
+
   @RequestMapping("/home")
   String hello() {
     return """
@@ -25,10 +29,18 @@ public class HomeRestController {
 
   @GetMapping("/add")
   String addItem(@RequestParam("task") String task,
-                 @RequestParam("deadline") String deadline) {
+      @RequestParam("deadline") String deadline) {
     String id = UUID.randomUUID().toString().substring(0, 8);
     TaskItem item = new TaskItem(id, task, deadline, false);
     taskItems.add(item);
     return "タスクを追加しました。";
+  }
+
+  @GetMapping("/list")
+    String listItems() {
+      String result = taskItems.stream()
+          .map(TaskItem::toString)
+          .collect(Collectors.joining(","));
+          return result;
   }
 }
