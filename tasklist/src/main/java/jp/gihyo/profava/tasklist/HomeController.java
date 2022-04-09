@@ -33,6 +33,7 @@ public class HomeController {
     return "redirect:/list";
   }
 
+// list
   @GetMapping("/list")
     String listItems(Model model) {
       model.addAttribute("taskList", taskItems);
