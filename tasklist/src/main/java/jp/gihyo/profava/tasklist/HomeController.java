@@ -33,16 +33,9 @@ public class HomeController {
     return "redirect:/list";
   }
 
-// list
   @GetMapping("/list")
     String listItems(Model model) {
       model.addAttribute("taskList", taskItems);
       return "home";
-  }
-
-  @GetMapping("/delete")
-  String deleteItem(@RequestParam("id") String id) {
-    taskItems.removeIf(item -> item.id.equals(id));
-    return "redirect:/list";
   }
 }
