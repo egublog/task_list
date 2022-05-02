@@ -18,12 +18,14 @@ public class HomeController {
 
   private List<TaskItem> taskItems = new ArrayList<>();
 
+  // ホーム画面を表示する
   @RequestMapping("/home")
   String hello(Model model) {
     model.addAttribute("time", LocalDateTime.now());
     return "hello";
   }
 
+  // リストを追加する
   @GetMapping("/add")
   String addItem(@RequestParam("task") String task,
       @RequestParam("deadline") String deadline) {
@@ -33,6 +35,7 @@ public class HomeController {
     return "redirect:/list";
   }
 
+  // リストを表示する
   @GetMapping("/list")
     String listItems(Model model) {
       model.addAttribute("taskList", taskItems);
